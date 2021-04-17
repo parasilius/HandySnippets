@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\author{DrNakiz::HandySnippets}
+\title{Is The Given Year a Leap Year?}
+
+\begin{document}
+
+\maketitle
+
+\section{Logic}
+
+A leap year occurs on any year evenly divisible by 4, but not on a century 
+unless it is divisible by 400.\footnote{https://projecteuler.net/problem=19}
+Let $p(x)$ be ``$x$ is evenly divisible by 4.", $q(x)$ be ``$x$ is evenly
+divisible by 100.", and $r(x)$ be ``$x$ is evenly divisible by 400.".
+
+So a $year$ is a leap year if and only if $p(year)\wedge(\neg r(year)
+\rightarrow \neg q(year))$. This evaluates to $p(year)\wedge(r(year)\vee \neg 
+q(year))$. By applying the distributive law for propositions we obtain $(p(yea
+r)\wedge r(year)) \vee (p(year)\wedge \neg q(year))$.
+
+Although it is obvious, but here we show $p(x) \wedge r(x) \leftrightarrow r(x)
+$ is a tautology, or in other words, $p(x) \wedge r(x)$ is equivalent to $r(x)$
+. We rewrite $p(x) \wedge r(x) \leftrightarrow r(x)$ as $(p(x) \wedge r(x) 
+\rightarrow r(x)) \wedge (r(x) \rightarrow p(x) \wedge r(x))$. $p(x) \wedge
+r(x) \rightarrow r(x)$ is a tautology, so by identity law the statement will 
+be equivalent to $r(x) \rightarrow p(x) \wedge r(x)$. $p(x) \wedge r(x)
+\rightarrow p(x)$ is also a tautology, and so by identity law, $r(x) 
+\rightarrow p(x) \wedge r(x)$ is equivalent to $(r(x) \rightarrow p(x) \wedge
+r(x)) \wedge (p(x) \wedge r(x) \rightarrow p(x))$, and by applying the 
+transitive law, the statement evaluates to $r(x) \rightarrow p(x)$ which is a
+tautology, beacause if a number is evenly divisible by 400, it is also evenly 
+divisible by 4. So we conclude that $p(x) \wedge r(x)$ is equivalent to $r(x)$.
+Therefore a $year$ is a leap year if and only if $r(year) \vee (p(year)\wedge
+\neg q(year))$.
+
+\end{document}
