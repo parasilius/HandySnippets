@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\author{Handy Snippets}
+\title{Sum of All Proper Divisors of a Natural Number}
+
+\begin{document}
+
+\maketitle
+
+\section{Proofs}
+
+\subsection{First Algorithm}
+
+The first algorithm is initialized with a list including an item of 1.
+
+We loop through the numbers in the range $[2, \frac{n}{2}]$, in which $n$ is
+our natural number. For each integer $i$ in the mentioned range, we check if
+$n$ and $\frac{n}{i}$ is not already in our list. If not, we add it. Finally, 
+the sum of all items in the list is returned.
+
+Note that this is not an optimized algorithm, but easier to understand. The 
+reason we check up to $\frac{n}{2}$ is that 2 is the first prime number that 
+may or may not be a proper divisor of the natural number $n$, but in each case,
+ all the other proper divisors are less than or equal to $\frac{n}{2}$.
+
+
+\subsection{Second Algorithm}
+
+The second algorithm was published in here\footnote{https://www.geeksforgeeks.org/sum-of-all-proper-divisors-of-a-natural-number/\#:~:text=Given\%20a\%20natural\%20number\%2C\%20calculate,\%2B\%205\%20\%2B\%2010\%20\%3D\%2022.},
+but I found the explanation irrelevant. I found a better explanation here\footnote{https://stackoverflow.com/questions/5811151/why-do-we-check-up-to-the-square-root-of-a-prime-number-to-determine-if-it-is-pr}:
+
+If a natural number $n$ is not a prime, it can be factored into two factors 
+$a$ and $b$.
+
+Now $a$ and $b$ can't be both greater than $\sqrt{n}$, because if $\sqrt{n} < a$
+and $\sqrt{n} < b$, then as far as $n$, $a$ and $b$ are positive numbers, 
+we will obtain $n < ab$. Or a more complete proof is:
+
+\begin{align*}
+    \sqrt{n} &< a
+\end{align*}
+Multiplying both sides by $b$ we have:
+\begin{align*}
+    \sqrt{n}\times b &< a\times b
+\end{align*}
+Dividing both sides by $\sqrt{n}$ we obtain:
+\begin{align*}
+    b &< \frac{a\times b}{\sqrt{n}}
+\end{align*}
+Now by having $\sqrt{n} < b$ and $b < \frac{a\times b}{\sqrt{n}}$, we obtain:
+\begin{align*}
+    \sqrt{n} &< \frac{a\times b}{\sqrt{n}}
+\end{align*}
+Multiplying both sides by $\sqrt{n}$ we have:
+\begin{align*}
+    n &< ab
+\end{align*}
+Which is false. So if one factor is lesser than $\sqrt{n}$, the other one is
+greater than $\sqrt{n}$. Also note that if $\sqrt{n}$ is a natural number
+itself, we have to include it.
+
+\end{document}
